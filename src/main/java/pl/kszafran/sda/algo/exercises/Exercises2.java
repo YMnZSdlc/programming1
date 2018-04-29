@@ -14,6 +14,7 @@ import java.util.Comparator;
 public class Exercises2 {
 
     public IntSortingAlgorithm createSelectionSort() {
+
         return new SelectionSort();
     }
 
