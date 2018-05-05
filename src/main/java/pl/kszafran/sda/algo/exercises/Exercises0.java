@@ -3,6 +3,8 @@ package pl.kszafran.sda.algo.exercises;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toSet;
+
 /**
  * Zaimplementuj poniższe metody z użyciem wyrażeń lambda i/lub klas Stream oraz Optional.
  */
@@ -56,8 +58,13 @@ public class Exercises0 {
      * Zwrócone wyrazy zapisane są małymi literami.
      */
     public Set<String> keywordsIn(Book... books) {
-
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Arrays.stream(books)
+                .flatMap(b -> Arrays.stream(b.getTitle().split("\\s+")))
+                .map(w -> w.replaceAll("\\W", ""))
+                .map(w -> w.toLowerCase())
+                .filter(w -> !w.isEmpty())
+                .collect(toSet());
+//        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     /**

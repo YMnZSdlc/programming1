@@ -49,9 +49,28 @@ public class Exercises1 {
      * @throws IllegalArgumentException jeśli któryś z argument jest ujemny lub gdy nie podano żadnych argumentów
      */
     public int lcm(int... numbers) {
-        throw new UnsupportedOperationException("Not implemented yet");
-//        if(numbers.length==0 || Arrays.stream(numbers))throw IllegalArgumentException;
+//        throw new UnsupportedOperationException("Not implemented yet");
+        if (numbers.length==0){
+            throw new IllegalArgumentException("Podaj argumenty");
+        }
+        for (int number : numbers) {
+            if (number<0){
+                throw new IllegalArgumentException("Argument powinny być dodatnie");
+            }
+        }
+        return nww(numbers,0);
     }
+
+    private int nww(int[]tab,int i){
+        if (tab.length-1 == i)return tab[i];
+//        return nww2(tab[i], nww(tab,i+1));
+        return 0;
+    }
+
+//    private int nww2(int a, int b){
+//        if (a == 0 || b== 0) return a+b;
+//
+//    }
 
     ////////////////////////////////////////////
     //                                        //
