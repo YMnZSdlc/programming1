@@ -116,32 +116,57 @@ public class Exercises4 {
         private Node<T> head;
 
         public SdaLinkedList(T[] elements) {
-            throw new UnsupportedOperationException("Not implemented yet");
+            T[] arrayElementLink;
+            for (int i = elements.length - 1; i >= 0; i--) {
+                addFirst(elements[i]);
+            }
         }
 
         @Override
         public boolean isEmpty() {
-            throw new UnsupportedOperationException("Not implemented yet");
+            return head == null;
         }
 
         @Override
         public int size() {
-            throw new UnsupportedOperationException("Not implemented yet");
+            int sizeResult = 0;
+            Node<T> test = head;
+            while (test != null) {
+                test = test.next;
+                sizeResult++;
+            }
+            return sizeResult;
         }
 
         @Override
         public T getFirst() {
-            throw new UnsupportedOperationException("Not implemented yet");
+            if (head == null)
+                throw new NoSuchElementException();
+            return head.element;
         }
 
         @Override
         public T getLast() {
-            throw new UnsupportedOperationException("Not implemented yet");
+            if (head == null)
+                throw new NoSuchElementException();
+            Node<T> last = head;
+            while (last.next != null) {
+                last = last.next;
+            }
+            return last.element;
         }
 
         @Override
         public T get(int index) {
-            throw new UnsupportedOperationException("Not implemented yet");
+            if (head == null)
+                throw new NoSuchElementException();
+            Node<T> indexRef = head;
+            T result = null;
+            for (int i = 0; i <= index; i++) {
+                result = indexRef.element;
+                indexRef = indexRef.next;
+            }
+            return result;
         }
 
         @Override
@@ -151,7 +176,7 @@ public class Exercises4 {
 
         @Override
         public void addFirst(T element) {
-            throw new UnsupportedOperationException("Not implemented yet");
+            head = new Node<>(element, head);
         }
 
         @Override
@@ -196,9 +221,8 @@ public class Exercises4 {
         }
 
         private static class Node<T> {
-
-            private final T element;
-            private final Node<T> next;
+            private T element;
+            private Node<T> next;
 
             private Node(T element, Node<T> next) {
                 this.element = element;

@@ -5,10 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
@@ -22,7 +19,11 @@ public class Exercises3 {
      * Zwraca -1 jeśli element nie znajduje się w tablicy.
      */
     public int linearSearch(int[] array, int value) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (array == null || array.length == 0) return -1;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == value) return i;
+        }
+        return -1;
     }
 
     /**
@@ -30,14 +31,41 @@ public class Exercises3 {
      * Zwraca -1 jeśli element nie znajduje się w tablicy.
      */
     public int binarySearch(int[] array, int value) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (array == null || array.length == 0) return -1;
+        int low = 0;
+        int hi = array.length - 1;
+        while (low <= hi) {
+            int mid = (low + hi) / 2;
+            if (array[mid] == value) {
+                return mid;
+            } else if (array[mid] < value) {
+                low = mid + 1;
+            } else {
+                hi = mid - 1;
+            }
+        }
+        return -1;
     }
 
     /**
      * Wyszukuje element o wartości value w podanej POSORTOWANEJ liście i zwraca jego indeks.
      */
     public <T> Optional<Integer> indexOf(List<T> list, T value, Comparator<T> comparator) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (list.isEmpty())
+            Optional.empty();
+        int low = 0;
+        int hi = list.size() - 1;
+        while (low <= hi) {
+            int mid = (low + hi) / 2;
+            if (comparator.compare(list.get(mid), value) == 0) {
+                return Optional.of(mid);
+            } else if (comparator.compare(list.get(mid), value) < 0) {
+                low = mid + 1;
+            } else {
+                hi = mid - 1;
+            }
+        }
+        return Optional.empty();
     }
 
     ////////////////////////////////////////////
