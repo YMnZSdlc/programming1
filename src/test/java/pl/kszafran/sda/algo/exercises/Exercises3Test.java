@@ -1,17 +1,8 @@
 package pl.kszafran.sda.algo.exercises;
 
-import org.junit.jupiter.api.Test;
-import pl.kszafran.sda.algo.exercises.Exercises3.IntRange;
-
-import java.util.List;
-import java.util.Optional;
-
-import static java.util.Collections.emptyList;
-import static java.util.Comparator.naturalOrder;
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.kszafran.sda.algo.exercises.Exercises3.IntRange;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,11 +10,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 import static java.util.Collections.emptyList;
+import static java.util.Comparator.naturalOrder;
 import static java.util.stream.Collectors.toList;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class Exercises3Test {

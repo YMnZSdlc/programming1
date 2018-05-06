@@ -2,17 +2,14 @@ package pl.kszafran.sda.algo.solutions;
 
 import pl.kszafran.sda.algo.exercises.Exercises3;
 
-
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
