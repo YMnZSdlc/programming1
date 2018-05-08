@@ -1,6 +1,7 @@
 package pl.kszafran.sda.algo.exercises;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
 /**
@@ -140,14 +141,14 @@ public class Exercises4 {
 
         @Override
         public T getFirst() {
-            if (head == null)
+            if (isEmpty())
                 throw new NoSuchElementException();
             return head.element;
         }
 
         @Override
         public T getLast() {
-            if (head == null)
+            if (isEmpty())
                 throw new NoSuchElementException();
             Node<T> last = head;
             while (last.next != null) {
@@ -158,20 +159,23 @@ public class Exercises4 {
 
         @Override
         public T get(int index) {
-            if (head == null)
-                throw new NoSuchElementException();
+            if (index<0)
+                throw  new IndexOutOfBoundsException();
+            if (isEmpty())
+                throw new IndexOutOfBoundsException();
             Node<T> indexRef = head;
-            T result = null;
-            for (int i = 0; i <= index; i++) {
-                result = indexRef.element;
+            for (int i = 0; i < index; i++) {
                 indexRef = indexRef.next;
+                if (indexRef==null){
+                    throw new IndexOutOfBoundsException();
+                }
             }
-            return result;
+            return indexRef.element;
         }
 
         @Override
         public void clear() {
-            throw new UnsupportedOperationException("Not implemented yet");
+            head = null;
         }
 
         @Override
@@ -181,6 +185,7 @@ public class Exercises4 {
 
         @Override
         public void addLast(T element) {
+            
             throw new UnsupportedOperationException("Not implemented yet");
         }
 
