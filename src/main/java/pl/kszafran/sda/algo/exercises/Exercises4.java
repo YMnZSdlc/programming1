@@ -185,18 +185,36 @@ public class Exercises4 {
 
         @Override
         public void addLast(T element) {
-            
-            throw new UnsupportedOperationException("Not implemented yet");
+            if (isEmpty()) addFirst(element);
+            else {
+                Node<T> last = head;
+                while (last.next != null) {
+                    last = last.next;
+                }
+                last.next = new Node<>(element,null);
+            }
         }
 
         @Override
         public void removeFirst() {
-            throw new UnsupportedOperationException("Not implemented yet");
+            if (isEmpty()) throw  new NoSuchElementException();
+            head = head.next;
         }
 
         @Override
         public void removeLast() {
-            throw new UnsupportedOperationException("Not implemented yet");
+            if (isEmpty()) throw new NoSuchElementException();
+            if (head.next == null) {
+                head = null;
+                return;
+            }
+            Node<T> beforeLast = head;
+            Node<T> last = head.next;
+            while (last.next!=null){
+                beforeLast = last;
+                last = last.next;
+            }
+            beforeLast.next=null;
         }
 
         ////////////////////////////////////////////
