@@ -131,9 +131,9 @@ public class Exercises4 {
         @Override
         public int size() {
             int sizeList = 0;
-            Node<T> link = head;
-            while (link != null) {
-                link = link.next;
+            Node<T> pionter = head;
+            while (pionter != null) {
+                pionter = pionter.next;
                 sizeList++;
             }
             return sizeList;
@@ -150,27 +150,27 @@ public class Exercises4 {
         public T getLast() {
             if (isEmpty())
                 throw new NoSuchElementException();
-            Node<T> last = head;
-            while (last.next != null) {
-                last = last.next;
+            Node<T> pointer = head;
+            while (pointer.next != null) {
+                pointer = pointer.next;
             }
-            return last.element;
+            return pointer.element;
         }
 
         @Override
         public T get(int index) {
-            if (index<0)
-                throw  new IndexOutOfBoundsException();
+            if (index < 0)
+                throw new IndexOutOfBoundsException();
             if (isEmpty())
                 throw new IndexOutOfBoundsException();
-            Node<T> link = head;
+            Node<T> pointer = head;
             for (int i = 0; i < index; i++) {
-                link = link.next;
-                if (link==null){
+                pointer = pointer.next;
+                if (pointer == null) {
                     throw new IndexOutOfBoundsException();
                 }
             }
-            return link.element;
+            return pointer.element;
         }
 
         @Override
@@ -187,17 +187,17 @@ public class Exercises4 {
         public void addLast(T element) {
             if (isEmpty()) addFirst(element);
             else {
-                Node<T> last = head;
-                while (last.next != null) {
-                    last = last.next;
+                Node<T> pointer = head;
+                while (pointer.next != null) {
+                    pointer = pointer.next;
                 }
-                last.next = new Node<>(element,null);
+                pointer.next = new Node<>(element, null);
             }
         }
 
         @Override
         public void removeFirst() {
-            if (isEmpty()) throw  new NoSuchElementException();
+            if (isEmpty()) throw new NoSuchElementException();
             head = head.next;
         }
 
@@ -208,13 +208,13 @@ public class Exercises4 {
                 head = null;
                 return;
             }
-            Node<T> prev = head;
-            Node<T> last = head.next;
-            while (last.next!=null){
-                prev = last;
-                last = last.next;
+            Node<T> pointPrev = head;
+            Node<T> pointNext = head.next;
+            while (pointNext.next != null) {
+                pointPrev = pointNext;
+                pointNext = pointNext.next;
             }
-            prev.next=null;
+            pointPrev.next = null;
         }
 
         ////////////////////////////////////////////
@@ -225,7 +225,30 @@ public class Exercises4 {
 
         @Override
         public Iterator<T> iterator() {
-            throw new UnsupportedOperationException("Not implemented yet");
+            return new Iterator<T>() {
+                private Node<T> node = head;
+                private Node<T> prev = node;
+
+                @Override
+                public boolean hasNext() {
+                    return node != null;
+                }
+
+                @Override
+                public T next() {
+                    if (node == null) throw new NoSuchElementException();
+                    T element = node.element;
+                    prev = node;
+                    node = node.next;
+                    return element;
+                }
+
+                @Override
+                public void remove() {
+                    if (!hasNext()) throw  new NoSuchElementException();
+                    prev.next=null;
+                }
+            };
         }
 
         @Override
