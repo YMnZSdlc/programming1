@@ -243,11 +243,11 @@ public class Exercises4 {
                     return element;
                 }
 
-                @Override
-                public void remove() {
-                    if (!hasNext()) throw  new NoSuchElementException();
-                    prev.next=null;
-                }
+//                @Override
+//                public void remove() {
+//                    if (!hasNext()) throw  new NoSuchElementException();
+//                    prev.next=null;
+//                }
             };
         }
 
