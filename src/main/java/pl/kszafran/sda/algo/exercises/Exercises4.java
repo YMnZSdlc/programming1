@@ -130,11 +130,12 @@ public class Exercises4 {
 
         @Override
         public int size() {
+            if (head == null) return 0;
             return sizeRec(head);
         }
 
-        public int sizeRec(Node<T> pointer){
-            if (pointer.next==null){
+        public int sizeRec(Node<T> pointer) {
+            if (pointer.next == null) {
                 return 1;
             }
             return 1 + sizeRec(pointer.next);
@@ -246,8 +247,8 @@ public class Exercises4 {
 
                 @Override
                 public void remove() {
-                    if (!hasNext()) throw  new NoSuchElementException();
-                    prev.next=null;
+                    if (!hasNext()) throw new NoSuchElementException();
+                    prev.next = null;
                 }
             };
         }
