@@ -130,13 +130,13 @@ public class Exercises4 {
 
         @Override
         public int size() {
-            int sizeResult = 0;
-            Node<T> test = head;
-            while (test != null) {
-                test = test.next;
-                sizeResult++;
+            int sizeList = 0;
+            Node<T> link = head;
+            while (link != null) {
+                link = link.next;
+                sizeList++;
             }
-            return sizeResult;
+            return sizeList;
         }
 
         @Override
@@ -163,14 +163,14 @@ public class Exercises4 {
                 throw  new IndexOutOfBoundsException();
             if (isEmpty())
                 throw new IndexOutOfBoundsException();
-            Node<T> indexRef = head;
+            Node<T> link = head;
             for (int i = 0; i < index; i++) {
-                indexRef = indexRef.next;
-                if (indexRef==null){
+                link = link.next;
+                if (link==null){
                     throw new IndexOutOfBoundsException();
                 }
             }
-            return indexRef.element;
+            return link.element;
         }
 
         @Override
@@ -208,13 +208,13 @@ public class Exercises4 {
                 head = null;
                 return;
             }
-            Node<T> beforeLast = head;
+            Node<T> prev = head;
             Node<T> last = head.next;
             while (last.next!=null){
-                beforeLast = last;
+                prev = last;
                 last = last.next;
             }
-            beforeLast.next=null;
+            prev.next=null;
         }
 
         ////////////////////////////////////////////
