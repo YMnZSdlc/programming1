@@ -130,13 +130,16 @@ public class Exercises4 {
 
         @Override
         public int size() {
-            int sizeList = 0;
-            Node<T> pionter = head;
-            while (pionter != null) {
-                pionter = pionter.next;
-                sizeList++;
-            }
-            return sizeList;
+//            while (pionter != null) {
+//                pionter = pionter.next;
+//                sizeList++;
+//            }
+            return sizeRec(head);
+        }
+
+        public int sizeRec(Node<T> head){
+            if (head.next==null) return 0;
+            return 1 + size();
         }
 
         @Override
