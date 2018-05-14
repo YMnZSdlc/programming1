@@ -223,9 +223,7 @@ public class Exercises5 {
      * @throws IllegalArgumentException jeśli wyrażenie jest niepoprawne
      */
     public int evaluate(String expression) {
-        String [] array = expression.split("\\s");
-        
-
-        throw new UnsupportedOperationException("Not implemented yet");
+        return new Evaluator().evaluate(expression);
+//        throw new UnsupportedOperationException("Not implemented yet");
     }
 }
