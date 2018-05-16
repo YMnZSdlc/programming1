@@ -40,7 +40,7 @@ public class Exercises5 {
             if (c == '{' || c == '[' || c == '(') {
                 stos.push(c);
             } else if (c == '}') {//dokończ implementacje
-                return false;
+                
             }
         }
         return stos.isEmpty();
