@@ -40,7 +40,11 @@ public class Exercises5 {
             if (c == '{' || c == '[' || c == '(') {
                 stos.push(c);
             } else if (c == '}') {//dokończ implementacje
-                
+                if (stos.isEmpty() || stos.pop() != '{') return false;
+            } else if (c == ']') {
+                if (stos.isEmpty() || stos.pop() != '[') return false;
+            } else if (c == ')') {
+                if (stos.isEmpty() || stos.pop() != '(') return false;
             }
         }
         return stos.isEmpty();
@@ -208,7 +212,7 @@ public class Exercises5 {
      * <p>
      * Podpowiedź: ewaluacja odbywa się w dwóch krokach:
      * 1. należy użyć algorytmu shunting-yard aby przekształcić wyrażenie do notacji postfiksowej,
-     * czyli tzn. Odwrotnej Notacji Polskiej (Reverse Polish Notation)
+     * czyli tzw. Odwrotnej Notacji Polskiej (Reverse Polish Notation)
      * 2. należy obliczyć wyrażenie zapisane w notacji postfiksowej
      * <p>
      * Oba algorytmy są opisane na Wikipedii: https://pl.wikipedia.org/wiki/Odwrotna_notacja_polska
