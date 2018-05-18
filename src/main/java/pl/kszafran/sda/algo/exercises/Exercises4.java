@@ -130,31 +130,30 @@ public class Exercises4 {
 
         @Override
         public int size() {
-            int sizeList = 0;
-            Node<T> pionter = head;
-            while (pionter != null) {
-                pionter = pionter.next;
-                sizeList++;
-            }
-            return sizeList;
+            if (head == null) return 0;
+            return sizeRec(head);
+        }
+
+        public int sizeRec(Node<T> pointer) {
+            if (pointer.next == null) return 1;
+            return 1 + sizeRec(pointer.next);
         }
 
         @Override
         public T getFirst() {
-            if (isEmpty())
-                throw new NoSuchElementException();
+            if (isEmpty()) throw new NoSuchElementException();
             return head.element;
         }
 
         @Override
         public T getLast() {
-            if (isEmpty())
-                throw new NoSuchElementException();
-            Node<T> pointer = head;
-            while (pointer.next != null) {
-                pointer = pointer.next;
-            }
-            return pointer.element;
+            if (isEmpty()) throw new NoSuchElementException();
+            return getLastRec(head);
+        }
+
+        public T getLastRec(Node<T> pointer) {
+            if (pointer.next == null) return pointer.element;
+            return getLastRec(pointer.next);
         }
 
         @Override
@@ -163,14 +162,20 @@ public class Exercises4 {
                 throw new IndexOutOfBoundsException();
             if (isEmpty())
                 throw new IndexOutOfBoundsException();
-            Node<T> pointer = head;
-            for (int i = 0; i < index; i++) {
-                pointer = pointer.next;
-                if (pointer == null) {
-                    throw new IndexOutOfBoundsException();
-                }
-            }
-            return pointer.element;
+//            Node<T> pointer = head;
+//            for (int i = 0; i < index; i++) {
+//                pointer = pointer.next;
+//                if (pointer == null) {
+//                    throw new IndexOutOfBoundsException();
+//                }
+//            }
+            return getRec(index, head);
+        }
+
+        public T getRec(int index, Node<T> pointer) {
+            if (pointer == null) throw new IndexOutOfBoundsException();
+            if (index == 0) return pointer.element;
+            return getRec(index - 1, pointer.next);
         }
 
         @Override
@@ -186,13 +191,15 @@ public class Exercises4 {
         @Override
         public void addLast(T element) {
             if (isEmpty()) addFirst(element);
-            else {
-                Node<T> pointer = head;
-                while (pointer.next != null) {
-                    pointer = pointer.next;
-                }
+            else addLastRec(element, head);
+        }
+
+        public void addLastRec(T element, Node<T> pointer) {
+            if (pointer.next == null) {
                 pointer.next = new Node<>(element, null);
+                return;
             }
+            addLastRec(element, pointer.next);
         }
 
         @Override
@@ -205,7 +212,7 @@ public class Exercises4 {
         public void removeLast() {
             if (isEmpty()) throw new NoSuchElementException();
             if (head.next == null) {
-                head = null;
+                clear();
                 return;
             }
             Node<T> pointPrev = head;
@@ -215,7 +222,16 @@ public class Exercises4 {
                 pointNext = pointNext.next;
             }
             pointPrev.next = null;
+//            removeLastRec(head);
+//            return;
         }
+
+//        public boolean removeLastRec(Node<T>pointer){
+//            if (pointer.next==null)return true;
+//            if (removeLastRec(pointer.next))pointer.next=null;
+//            removeLastRec(pointer.next);
+//            return false;
+//        }
 
         ////////////////////////////////////////////
         //                                        //
@@ -224,6 +240,7 @@ public class Exercises4 {
         ////////////////////////////////////////////
 
         @Override
+
         public Iterator<T> iterator() {
             return new Iterator<T>() {
                 private Node<T> node = head;
@@ -243,11 +260,11 @@ public class Exercises4 {
                     return element;
                 }
 
-//                @Override
-//                public void remove() {
-//                    if (!hasNext()) throw  new NoSuchElementException();
-//                    prev.next=null;
-//                }
+/*                @Override
+                public void remove() {
+                    if (!hasNext()) throw new NoSuchElementException();
+                    prev.next = null;
+                }*/
             };
         }
 
