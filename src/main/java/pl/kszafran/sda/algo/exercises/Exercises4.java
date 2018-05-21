@@ -215,23 +215,23 @@ public class Exercises4 {
                 clear();
                 return;
             }
-//            Node<T> pointPrev = head;
-//            Node<T> pointNext = head.next;
-//            while (pointNext.next != null) {
-//                pointPrev = pointNext;
-//                pointNext = pointNext.next;
-//            }
-//            pointPrev.next = null;
-            removeLastRec(head);
-            return;
+            Node<T> pointPrev = head;
+            Node<T> pointNext = head.next;
+            while (pointNext.next != null) {
+                pointPrev = pointNext;
+                pointNext = pointNext.next;
+            }
+            pointPrev.next = null;
+//            removeLastRec(head);
+//            return;
         }
 
-        public boolean removeLastRec(Node<T>pointer){
-            if (pointer.next==null)return true;
-            if (removeLastRec(pointer.next))pointer.next=null;
-            removeLastRec(pointer.next);
-            return false;
-        }
+//        public boolean removeLastRec(Node<T>pointer){
+//            if (pointer.next==null)return true;
+//            if (removeLastRec(pointer.next))pointer.next=null;
+//            removeLastRec(pointer.next);
+//            return false;
+//        }
 
         ////////////////////////////////////////////
         //                                        //
@@ -260,11 +260,11 @@ public class Exercises4 {
                     return element;
                 }
 
-                @Override
+/*                @Override
                 public void remove() {
                     if (!hasNext()) throw new NoSuchElementException();
                     prev.next = null;
-                }
+                }*/
             };
         }
 

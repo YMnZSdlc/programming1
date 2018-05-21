@@ -9,21 +9,22 @@ public class Evaluator {
     public int evaluate(String expression) {
         String[] array;
         array = expression.split("\\s+");
-        arrayToPostfix(array);
+        toONP(array);
         return 0;
     }
 
-    private Deque<String> arrayToPostfix(String[] array) {
-        Deque<String> output = new ArrayDeque<String>();
-        Deque<String> stack = new ArrayDeque<String>();
 
-        for (String s : array) {
-            if (s.matches("\\d+")){
-                stack.offer(s);
+    private Deque<String> toONP(String[] array) {
+        Deque<String> stack = new ArrayDeque<String>();
+        Deque<String> output = new ArrayDeque<String>();
+
+        for (String symbol : array) {
+            if (symbol.matches("\\d+")){
+                output.offer(symbol);
             }
-            
 
         }
+
         return null;
 
     }
