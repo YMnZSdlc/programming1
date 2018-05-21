@@ -14,12 +14,12 @@ public class Evaluator {
     }
 
     private Deque<String> arrayToPostfix(String[] array) {
-        Deque<String> token = new ArrayDeque<String>();
-        Deque<String> numbers = new ArrayDeque<String>();
+        Deque<String> output = new ArrayDeque<String>();
+        Deque<String> stack = new ArrayDeque<String>();
 
         for (String s : array) {
             if (s.matches("\\d+")){
-                numbers.offer(s);
+                stack.offer(s);
             }
             
 
