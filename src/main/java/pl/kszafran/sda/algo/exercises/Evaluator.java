@@ -22,6 +22,9 @@ public class Evaluator {
             if (symbol.matches("\\d+")){
                 output.offer(symbol);
             }
+            if (symbol.equals("(")){
+
+            }
 
         }
 
