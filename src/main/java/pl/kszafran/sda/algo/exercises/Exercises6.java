@@ -1,9 +1,7 @@
 package pl.kszafran.sda.algo.exercises;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
+import java.util.function.Consumer;
 
 /**
  * Zaimplementuj poniższe metody operujące na drzewie binarnym.
@@ -13,17 +11,25 @@ public class Exercises6 {
     /**
      * Przechodzi podane drzewo w kolejności pre-order i zwraca listę
      * elementów w kolejności takiej, w jakiej były napotkane.
-     *
+     * <p>
      * Uwaga: metodę należy zaimplementować z wykorzystaniem rekurencji.
      */
     public <T> List<T> traversePreOrder(SdaTree<T> tree) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        List<T> visited = new ArrayList<>();
+        preOrder(tree, visited::add);
+        return visited;
+    }
+
+    private <T> void preOrder(SdaTree<T> tree, Consumer<T> visitor) {
+        visitor.accept(tree.getValue());
+        tree.getLeftChild().ifPresent(left -> preOrder(left, visitor));
+        tree.getRightChild().ifPresent(right -> preOrder(right, visitor));
     }
 
     /**
      * Przechodzi podane drzewo w kolejności in-order i zwraca listę
      * elementów w kolejności takiej, w jakiej były napotkane.
-     *
+     * <p>
      * Uwaga: metodę należy zaimplementować z wykorzystaniem rekurencji.
      */
     public <T> List<T> traverseInOrder(SdaTree<T> tree) {
@@ -33,7 +39,7 @@ public class Exercises6 {
     /**
      * Przechodzi podane drzewo w kolejności post-order i zwraca listę
      * elementów w kolejności takiej, w jakiej były napotkane.
-     *
+     * <p>
      * Uwaga: metodę należy zaimplementować z wykorzystaniem rekurencji.
      */
     public <T> List<T> traversePostOrder(SdaTree<T> tree) {
@@ -42,7 +48,7 @@ public class Exercises6 {
 
     /**
      * Funkcja działa tak samo jak traversePreOrder.
-     *
+     * <p>
      * Uwaga: metodę należy zaimplementować z wykorzystaniem stosu (bez rekurencji).
      */
     public <T> List<T> traversePreOrderIterative(SdaTree<T> tree) {
@@ -52,7 +58,7 @@ public class Exercises6 {
     /**
      * Przechodzi podane drzewo w kolejności level-order i zwraca listę
      * elementów w kolejności takiej, w jakiej były napotkane.
-     *
+     * <p>
      * Podpowiedź: implementacja jest bardzo podobna do traversePreOrderIterative,
      * ale zamiast stosu wykorzystuje inną strukturę danych.
      */
@@ -69,19 +75,19 @@ public class Exercises6 {
 
     /**
      * Tworzy drzewo binarne na podstawie podanego tekstu.
-     *
+     * <p>
      * Tekst zawiera tyle linijek, ile poziomów ma drzewo.
      * Każda linijka zawiera wartości węzłów na odpowiednim poziomie rozdzielone spacjami, po kolei,
      * czyli każda linijka zawiera dwa razy więcej wartości niż poprzednia.
      * Wartość "-" oznacza, że węzeł na danej pozycji nie istnieje.
-     *
+     * <p>
      * Np. drzewo ze slajdów przedstawione byłoby jako "F\nB G\nA D - I\n- - C E - - H -",
      * czyli zapisując w wielu liniach:
      * F
      * B G
      * A D - I
      * - - C E - - H -
-     *
+     * <p>
      * Uwaga: nie należy modyfikować klas SdaTree i SdaTreeImpl.
      *
      * @throws IllegalArgumentException jeśli któraś z linijek zawiera nieprawidłową ilość wartości
@@ -98,18 +104,18 @@ public class Exercises6 {
 
     /**
      * Tworzy drzewo binarne na podstawie podanego tekstu.
-     *
+     * <p>
      * Każda linijka zawiera informację o parze rodzic-dziecko.
      * Format każdej linijki wygląda następująco:
-     *
+     * <p>
      * left(rodzic)=dziecko
-     *
+     * <p>
      * lub
-     *
+     * <p>
      * right(rodzic)=dziecko
-     *
+     * <p>
      * dla lewego i prawego dziecka odpowiednio.
-     *
+     * <p>
      * Uwaga: nie należy modyfikować klas SdaTree i SdaTreeImpl.
      *
      * @throws IllegalArgumentException jeśli któraś z linijek jest niezgodna z powyższym formatem
@@ -120,7 +126,7 @@ public class Exercises6 {
 
     /**
      * Funkcja oblicza wysokość drzewa.
-     *
+     * <p>
      * Przypomnienie: wysokość drzewa składającego się jedynie z korzenia to 0.
      */
     public int calcHeight(SdaTree<?> tree) {
