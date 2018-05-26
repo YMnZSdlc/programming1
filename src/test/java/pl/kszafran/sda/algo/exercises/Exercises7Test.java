@@ -14,7 +14,7 @@ public class Exercises7Test {
     private Exercises7 exercises = new Exercises7();
 
     @Test
-    void test_SdaHeap_isHeap() {
+    void test_isHeap() {
         assertTrue(exercises.isHeap(new int[]{9, 8, 7, 6, 5, 4, 3}));
         assertTrue(exercises.isHeap(new int[]{9, 8, 7, 6, 5, 4, 3, 2}));
         assertFalse(exercises.isHeap(new int[]{0, 1, 2, 0, 4, 5, 6, 7, 8, 9}));
