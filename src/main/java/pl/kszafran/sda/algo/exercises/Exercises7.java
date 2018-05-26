@@ -14,7 +14,12 @@ public class Exercises7 {
      * ma wartość większą lub równą wartości swoich dzieci.
      */
     public boolean isHeap(int[] array) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        for (int i = array.length-1; i > 0; i--) {
+            if (array[i] > array[(i-1)/2]){
+                return false;
+            }
+        }
+        return true;
     }
 
     public <T extends Comparable<T>> SdaHeap<T> createHeap(T[] heap, int capacity) {
@@ -61,8 +66,27 @@ public class Exercises7 {
 
         @Override
         public void push(T element) {
-            throw new UnsupportedOperationException("Not implemented yet");
+            heap[++size]= element;
+            int parent = (size-1)/2;
+            int child = size;
+            while (parent>1){
+                if (heap[child].compareTo(heap[parent])>0){
+                    swapInSdaHeap (child, parent);
+                    child = parent;
+                    parent = (child-1)/2;
+                }
+                else break;
+            }
+//            throw new UnsupportedOperationException("Not implemented yet");
         }
+
+        private void swapInSdaHeap(int a, int b) {
+            T temp;
+            temp = heap [a];
+            heap [a]= heap [b];
+            heap [b]=temp;
+        }
+
 
         @Override
         public T pop() {

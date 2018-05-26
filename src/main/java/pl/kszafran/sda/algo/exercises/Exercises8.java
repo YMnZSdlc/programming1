@@ -1,8 +1,8 @@
 package pl.kszafran.sda.algo.exercises;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+
+import static java.util.stream.Collectors.joining;
 
 public class Exercises8 {
 
@@ -12,21 +12,56 @@ public class Exercises8 {
      * Uwaga: rozwiązanie musi działać w czasie O(n).
      */
     public <T> Set<T> findDuplicates(List<T> values) {
-        throw new UnsupportedOperationException("Not implemented yet");
+//        if (values.isEmpty()) throw new NullPointerException("Pust lista");
+        Set<T> test = new HashSet<>();
+        Set<T> result = new HashSet<>();
+        for (T str : values) {
+            if (test.contains(str)){
+                result.add(str);
+            }
+            else {
+                test.add(str);
+            }
+        }
+        return result;
+
+
+//        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     /**
      * Funkcja zwraca mapę przypisującą każdej wartości jej ilość wystąpień w liście "values".
      */
     public <T> Map<T, Integer> countOccurrences(List<T> values) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Map<T, Integer> result = new HashMap<>();
+        for (T value : values) {
+            if (result.containsKey(value)){
+                result.replace(value, result.get(value)+1);
+            }
+            else{
+                result.put(value,1);
+            }
+        }
+        return result;
+
+//        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     /**
      * Funkcja zwraca zbiór wszystkich wartości występujących w obu podanych listach.
      */
     public <T> Set<T> findCommonValues(List<T> list1, List<T> list2) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Set<T> result = new HashSet<>();
+
+        for (T list1Value : list1) {
+            if (list2.contains(list1Value)){
+                result.add(list1Value);
+            }
+        }
+        return result;
+
+
+//        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     /**
@@ -69,7 +104,26 @@ public class Exercises8 {
      * @throws IllegalArgumentException jeśli linijka zawiera niepoprawny nagłówek, puste linie są dopuszczalne
      */
     public String mergeHeaders(String headers) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Map<String, String> map = new LinkedHashMap<>();
+        for (String header : headers.split("\n")) {
+            if (!header.contains(":")) throw new IllegalArgumentException("Bad header");
+            String []headArr = header.split(":",2);
+
+            if (map.containsKey(headArr[0])){
+                if (!map.get(headArr[0]).equals(headArr[1])){
+                    map.replace(headArr[0], (map.get(headArr[0]+ ","+ headArr[1])));
+                }
+            }
+            else{
+                map.put(headArr[0],headArr[1]);
+            }
+
+        }
+
+        return map.entrySet().stream()
+                .map(entry -> entry.getKey() + ":" + entry.getValue())
+                .collect(joining("\n"));
+//        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     /**
