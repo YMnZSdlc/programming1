@@ -66,16 +66,14 @@ public class Exercises7 {
 
         @Override
         public void push(T element) {
-            heap[++size]= element;
-            int parent = (size-1)/2;
-            int child = size;
-            while (parent>1){
-                if (heap[child].compareTo(heap[parent])>0){
+            if (size>=heap.length) throw new IllegalStateException("Pełne");
+            heap[size++]= element;
+            int parent = (size-2)/2;
+            int child = size-1;
+            while (child>0 && heap[child].compareTo(heap[parent])>0){
                     swapInSdaHeap (child, parent);
                     child = parent;
                     parent = (child-1)/2;
-                }
-                else break;
             }
 //            throw new UnsupportedOperationException("Not implemented yet");
         }
@@ -90,8 +88,21 @@ public class Exercises7 {
 
         @Override
         public T pop() {
-            throw new UnsupportedOperationException("Not implemented yet");
+            if (size<1) throw new NoSuchElementException("Kopiec pusty");
+            T result = heap[0];
+            heap [0] = heap [--size];
+            heap [size]= null;
+            int i =0;
+            popRec (i);
+
+            return result;
+//            throw new UnsupportedOperationException("Not implemented yet");
         }
+
+        private void popRec(int i) {
+            if (heap[i].)
+        }
+
 
         @Override
         public int size() {
