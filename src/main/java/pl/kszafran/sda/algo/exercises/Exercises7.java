@@ -100,7 +100,8 @@ public class Exercises7 {
         }
 
         private void popRec(int i) {
-            if (heap[i].)
+//            if (heap[i].);
+            throw new UnsupportedOperationException("Not implemented yet");
         }
 
 
