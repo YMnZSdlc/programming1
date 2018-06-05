@@ -3,6 +3,7 @@ package pl.kszafran.sda.algo.exercises;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toMap;
 import static java.util.stream.Collectors.toSet;
 
 /**
@@ -36,7 +37,7 @@ public class Exercises0 {
      */
     public long numPositive(List<Integer> numbers) {
         return numbers.stream()
-                .filter(e -> e > 0)
+                .filter(e -> e>0)
                 .count();
     }
 
@@ -71,7 +72,16 @@ public class Exercises0 {
      * Zwraca mapę pozwalającą znaleźć książki po tytule.
      */
     public Map<String, Book> byTitle(List<Book> books) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return books.stream()
+                .collect(toMap(b->b.getTitle(),b->b));
+
+/*      Moja metoda. W starym stylu.
+        Map<String, Book> result = new HashMap<>();
+        for (Book book : books) {
+            result.put(book.getTitle(),book);
+        }
+        return result;
+*/
     }
 
     ////////////////////////////////////////////
